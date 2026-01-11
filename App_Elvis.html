@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Talking Board</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #111;
+        color: white;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 100vh;
+        gap: 10px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .category {
+        border-radius: 20px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .food { background: #1abc9c; }
+    .call { background: #3498db; }
+    .yesno { background: #9b59b6; }
+    .washroom { background: #e67e22; }
+
+    .title {
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        flex: 1;
+    }
+
+    .btn {
+        background: rgba(0,0,0,0.3);
+        border: none;
+        border-radius: 15px;
+        color: white;
+        font-size: 32px;
+        font-weight: bold;
+        padding: 20px;
+        cursor: pointer;
+    }
+
+    .btn:active {
+        background: rgba(0,0,0,0.6);
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="category food">
+        <div class="title">FOOD</div>
+        <div class="buttons">
+            <button class="btn" onclick="speak('Hungry')">Hungry</button>
+            <button class="btn" onclick="speak('Water')">Water</button>
+            <button class="btn" onclick="speak('Tea')">Tea</button>
+        </div>
+    </div>
+
+    <div class="category call">
+        <div class="title">CALL</div>
+        <div class="buttons">
+            <button class="btn" onclick="speak('Maid')">Maid</button>
+            <button class="btn" onclick="speak('Son')">Son</button>
+            <button class="btn" onclick="speak('Husband')">Husband</button>
+        </div>
+    </div>
+
+    <div class="category yesno">
+        <div class="title">YES / NO</div>
+        <div class="buttons">
+            <button class="btn" onclick="speak('Yes')">Yes</button>
+            <button class="btn" onclick="speak('No')">No</button>
+        </div>
+    </div>
+
+    <div class="category washroom">
+        <div class="title">WASHROOM</div>
+        <div class="buttons">
+            <button class="btn" onclick="speak('Change clothes')">Change Clothes</button>
+            <button class="btn" onclick="speak('Number one')">No 1</button>
+            <button class="btn" onclick="speak('Number two')">No 2</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function speak(text) {
+    window.speechSynthesis.cancel();   // stop previous voice
+    const msg = new SpeechSynthesisUtterance(text);
+    msg.rate = 0.9;
+    msg.pitch = 1;
+    msg.volume = 1;
+    window.speechSynthesis.speak(msg);
+}
+</script>
+
+</body>
+</html>
